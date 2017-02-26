@@ -11,7 +11,7 @@ export class Connection {
 
 
 
-    construct(req:any, res:any) {
+    constructor(req:any, res:any) {
         let url = req.param('url');
 
         let scrapedData = Scraper.scrape(url);
@@ -31,25 +31,22 @@ export class Connection {
 
         // var connection = published.connect();
 
-        return published.connect();
-
+        let connection = published.connect();
+        return connection;
         //if you need polymorphism place a tag parameter that basically receives SourceA
         // or whatever tag you decide
 
         // function createObserver(tag){
 
     }
-    createObserver(res: any){
+    createObserver(res: any) {
 
-        let result =  {
-        next: (response: any) => {res.json(response);},
-        error: (err:any) => {console.log('Error: %s', err);},
-        complete: () => {console.log('Completed');}
+       return ({
+            next: function (response:any ) { res.json(response); },
+            error: function (err: any) { console.log('Error: %s', err); },
+            complete: function () { console.log('Completed'); }
+        });
 
-        };
-
-
-    return result;
 }
 
 }
