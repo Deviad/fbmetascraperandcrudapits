@@ -1,4 +1,4 @@
-import {getOg} from 'open-graph-scraper/app.js';
+var getOg = require('open-graph-scraper');
 
 export class Scraper {
 
