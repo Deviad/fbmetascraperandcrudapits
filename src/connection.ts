@@ -1,7 +1,8 @@
 /**
  * Created by spotted on 26/02/17.
  */
-import { Observable } from '@reactivex/rxjs';
+import Rx from '@reactivex/rxjs'
+
 import '@reactivex/rxjs/dist/cjs/observable/from';
 
 import {Scraper} from "./scraper";
@@ -17,7 +18,7 @@ export class Connection {
 
         let scrapedData = Scraper.scrape(url);
 
-        let source = Observable.from(scrapedData);
+        let source = Rx.Observable.from(scrapedData);
 
         let published = source.publish();
 
@@ -40,13 +41,6 @@ export class Connection {
         // function createObserver(tag){
 
     }
-    createObserver(res: any) {
-
-       return {
-            next: function (response:any ) { res.json(response); },
-            error: function (err: any) { console.log('Error: %s', err); },
-            complete: function () { console.log('Completed'); }
-        };
 
 }
 
