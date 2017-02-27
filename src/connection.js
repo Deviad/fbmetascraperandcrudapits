@@ -3,13 +3,16 @@ exports.__esModule = true;
 /**
  * Created by spotted on 26/02/17.
  */
-var Rx = require("rxjs/Rx");
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/add/observable/from");
+require("rxjs/add/operator/publish");
+require("rxjs/add/operator/");
 var scraper_1 = require("./scraper");
 var Connection = (function () {
     function Connection(req, res) {
         var url = req.param('url');
         var scrapedData = scraper_1.Scraper.scrape(url);
-        var source = Rx.Observable.from(scrapedData);
+        var source = Observable_1.Observable.from(scrapedData);
         var published = source.publish();
         //useful for polymorphic kind of stuff: add a 'SourceA' argument
         // published.subscribe(createObserver('SourceA'));
