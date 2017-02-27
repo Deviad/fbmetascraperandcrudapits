@@ -1,7 +1,9 @@
 /**
  * Created by spotted on 26/02/17.
  */
-import * as Rx from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/operator/publish';
 
 import {Scraper} from "./scraper";
 
@@ -16,7 +18,7 @@ export class Connection {
 
         let scrapedData = Scraper.scrape(url);
 
-        let source = Rx.Observable.from(scrapedData);
+        let source = Observable.from(scrapedData);
 
         let published = source.publish();
 
