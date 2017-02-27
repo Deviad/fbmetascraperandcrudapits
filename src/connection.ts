@@ -1,9 +1,7 @@
 /**
  * Created by spotted on 26/02/17.
  */
-import Rx from '@reactivex/rxjs'
-
-import '@reactivex/rxjs/dist/cjs/observable/from';
+import  * as Rx  from '@reactivex/rxjs/dist/cjs/Rx'
 
 import {Scraper} from "./scraper";
 
@@ -33,8 +31,8 @@ export class Connection {
 
         // var connection = published.connect();
 
-        let connection = published.connect();
-        return connection;
+        return  published.connect();
+
         //if you need polymorphism place a tag parameter that basically receives SourceA
         // or whatever tag you decide
 
@@ -42,6 +40,14 @@ export class Connection {
 
     }
 
-}
+    createObserver(res: any) {
+
+        return {
+            next: function (response:any ) { res.json(response); },
+            error: function (err: any) { console.log('Error: %s', err); },
+            complete: function () { console.log('Completed'); }
+        };
+
+    }
 
 }
