@@ -7,7 +7,8 @@ var app = express();
 app.get('/api/richlinks', function (params: {req: any, res: any}) {
 
     (function(){
-        return new Connection(params);
+        var connection = new Connection(params);
+        return connection.connection;
     })()
 
 });

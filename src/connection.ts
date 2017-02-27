@@ -9,7 +9,7 @@ import {Scraper} from "./scraper";
 
 export class Connection {
 
-
+     connection: any;
 
     constructor(req:any, res:any) {
         let url = req.param('url');
@@ -31,7 +31,7 @@ export class Connection {
 
         // var connection = published.connect();
 
-        return  published.connect();
+        this.connection =  published.connect();
 
         //if you need polymorphism place a tag parameter that basically receives SourceA
         // or whatever tag you decide
