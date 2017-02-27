@@ -4,36 +4,39 @@
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/publish';
-import 'rxjs/add/operator/'
 import {Scraper} from "./scraper";
 
 
 
-export class Connection {
+class Connection {
 
      connection: any;
-
+     scrapedData: any;
+     source: any;
+     published: any;
+     url: any;
+     req: any;
+     res: any;
     constructor(req:any, res:any) {
-        let url = req.param('url');
+        this.url = req.param('url');
+        this.res = res;
+        this.req = req;
+        this.scrapedData = Scraper.scrape(this.url);
 
-        let scrapedData = Scraper.scrape(url);
+        this.source = Observable.from(this.scrapedData);
 
-        let source = Observable.from(scrapedData);
-
-        let published = source.publish();
+        this.published = this.source.publish();
 
         //useful for polymorphic kind of stuff: add a 'SourceA' argument
 
         // published.subscribe(createObserver('SourceA'));
 
-        published.subscribe(this.createObserver(res));
 
         //disposable object that I can use later own, more for my own convenience, to remember
         //that this is the connection. Otherwise I could just simply use published.unsubscribe();
 
         // var connection = published.connect();
 
-        this.connection =  published.connect();
 
         //if you need polymorphism place a tag parameter that basically receives SourceA
         // or whatever tag you decide
@@ -52,4 +55,10 @@ export class Connection {
 
     }
 
+    getConnection () {
+       return this.published.subscribe(this.createObserver(this.res));
+    }
+
 }
+
+export {Connection};
