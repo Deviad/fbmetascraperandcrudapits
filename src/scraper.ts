@@ -20,13 +20,4 @@ export class Scraper {
 
       return myOgs;
     }
-
-       // static scrape(this_url:any):any {
-       //
-       //  export var pippo: any = new ogs();
-       //
-       //  pippo({ url: this_url }, (er:any, res:any)=>{
-       //      return (er, res);
-       //  })
-       // }
 }

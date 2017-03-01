@@ -7,7 +7,7 @@
     "start": "node ./dist/app.js"
   },
   "author": "Davide Pugliese",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/body-parser": "0.0.33",
     "@types/debug": "0.0.29",
