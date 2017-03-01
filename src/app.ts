@@ -47,12 +47,12 @@ class App {
          * API endpoints */
         let router = express.Router();
         // placeholder route handler
-        router.get('/', (req, res, next) => {
+        router.get('/api', (req, res, next) => {
 
             let url = req.param('url');
 
             let connection = new Connection;
-           connection.getConnection(url);
+            connection.getConnection(url,res);
 
         });
         this.express.use('/', router);
