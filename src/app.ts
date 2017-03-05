@@ -5,13 +5,14 @@ import * as http from 'http';
 const errorHandler = require('errorhandler');
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import {Connection} from "./connection";
+import { DataService } from "./dataservice";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
-
+const CircularJSON = require('circular-json');
 const routes  = require('./routes').routes;
 
 const app: Application = express();
+
 
 
 // view engine setup
@@ -26,13 +27,17 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
-let connection = new Connection;
+let data = new DataService();
+
+
 
 app.route('/api').get(
     (req: express.Request, res: express.Response)=>{
 
         let url = req.param('url');
-        connection.getConnection(url, res );
+      data.getData(url).subscribe(
+         item =>  res.send(item)
+      );
     }
 );
 

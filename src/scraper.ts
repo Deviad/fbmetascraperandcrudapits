@@ -8,7 +8,15 @@ export class Scraper {
 
       return  ogs({url: url}, // Settings object first
             function (er, res) {
-                return (er, res);
+
+                 if (er == true) {
+                    console.log(er);
+                 }
+                 else  {
+                     return res;
+                 }
+
+
             }  // Callback)
         );
 
