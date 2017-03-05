@@ -5,7 +5,6 @@ import * as http from 'http';
 const errorHandler = require('errorhandler');
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import { FbDataService } from "./services/fb.data.service";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
 const CircularJSON = require('circular-json');
