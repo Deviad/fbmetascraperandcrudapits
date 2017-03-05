@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 import * as path from 'path';
 import * as http from 'http';
 const errorHandler = require('errorhandler');
@@ -9,7 +9,9 @@ import { DataService } from "./dataservice";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
 const CircularJSON = require('circular-json');
-const routes  = require('./routes').routes;
+import { ApiRoutes }  from './apiroutes';
+
+
 
 const app: Application = express();
 
@@ -27,18 +29,21 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
+// app.route('/api/ogscraper').get(
+//     (req: express.Request, res: express.Response)=>{
+//         let data = new DataService();
+//         let url = req.param('url');
+//         data.getData(url).subscribe(
+//             item =>  res.send(item)
+//         );
+//     }
+// );
 
+const apiRoutes = new ApiRoutes(app);
 
-
-app.route('/api').get(
-    (req: express.Request, res: express.Response)=>{
-        let data = new DataService();
-        let url = req.param('url');
-        data.getData(url).subscribe(
-         item =>  res.send(item)
-      );
-    }
-);
+    apiRoutes.ApiOgScraper().subscribe(
+        item => item
+    );
 
 const PORT = 5000;
 
