@@ -1,13 +1,29 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "outDir": "dist"
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "importHelpers": true,
+        "noImplicitAny": false,
+        "noEmitHelpers": true,
+        "sourceMap": true,
+        "noEmitOnError": true,
+        "allowSyntheticDefaultImports": true,
+        "lib": [
+            "dom",
+            "es5",
+            "es2015.Promise"
+        ]
+
     },
     "include": [
         "src/**/*.ts"
     ],
     "exclude": [
         "node_modules"
+    ],
+    "types": [
+        "rx","express", "node"
     ]
 }

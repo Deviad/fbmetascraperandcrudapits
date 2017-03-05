@@ -1,23 +1,18 @@
-var getOg = require('open-graph-scraper');
+const ogs = require('open-graph-scraper');
+
 
 export class Scraper {
 
-    constructor() {
 
-    }
+    public static scrape(url) {
 
-
-
-    static scrape (input_url:any ) {
-        let myOg = new getOg();
-
-        let myOgs = getOg(
-            {the_url: input_url},
-            (params:{er: any, res:any}) => {return params;}
+      return  ogs({url: url}, // Settings object first
+            function (er, res) {
+                return (er, res);
+            }  // Callback)
         );
 
-
-
-      return myOgs;
     }
+
+
 }

@@ -1,70 +1,54 @@
+import * as e from 'express';
 import * as path from 'path';
-import * as http from 'http'
-import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import {Connection} from './connection';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/publish';
+const root = require('app-root-path');
+const cookieParser =  require('cookie-parser');
+import * as routes from './routes';
 
 
-class App {
+const app = e();
 
-    public express: express.Application;
-    constructor() {
-        this.express = express();
-        this.middleware();
-        this.routes();
-        this.createServer();
-    }
+// view engine setup
+// app.set('views', `${root}/server/views/`);
+// app.set('view engine', 'ejs');
 
-    private middleware(): void {
-        this.express.use(logger('dev'));
-        this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({ extended: false }));
-    }
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
+app.use(cookieParser());
 
-    // private routes(): void {
-    //     /* This is just to get up and running, and to make sure what we've got is
-    //      * working so far. This function will change when we start to add more
-    //      * API endpoints */
-    //     let router = express.Router();
-    //     // placeholder route handler
-    //     router.get('/', (req, res, next) => {
-    //         res.json({
-    //             message: 'Hello World!'
-    //         });
-    //     });
-    //     this.express.use('/', router);
-    // }
+app.use('/', routes);
 
-    private routes(): void {
-        /* This is just to get up and running, and to make sure what we've got is
-         * working so far. This function will change when we start to add more
-         * API endpoints */
-        let router = express.Router();
-        // placeholder route handler
-        router.get('/api', (req, res, next) => {
+// catch 404 and forward to error handler
+app.use((req: e.Request, res: e.Response, next: e.NextFunction) => {
+    let err: any = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 
-            let url = req.param('url');
-
-            let connection = new Connection;
-            connection.getConnection(url,res);
-
+// error handlers
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use((err: any, req: e.Request, res: e.Response, next: e.NextFunction) => {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
         });
-        this.express.use('/', router);
-    }
+    });
+}
 
+app.use(function(err: any, req: e.Request, res: e.Response, next: Function) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
+});
 
-
-    private createServer() {
-        http.createServer(this.express).listen(5100, ()=>{
-            console.log("Example app listening on port 5100!");
-    })}
-
-    }
-
-export default new App().express;
+export default app;
