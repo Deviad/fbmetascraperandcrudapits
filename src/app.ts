@@ -27,15 +27,14 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
-let data = new DataService();
 
 
 
 app.route('/api').get(
     (req: express.Request, res: express.Response)=>{
-
+        let data = new DataService();
         let url = req.param('url');
-      data.getData(url).subscribe(
+        data.getData(url).subscribe(
          item =>  res.send(item)
       );
     }
