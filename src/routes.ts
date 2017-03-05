@@ -1,7 +1,7 @@
 import * as express from 'express';
-export const router = express.Router();
+export const routes = express.Router();
 
-router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+routes.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
     res.render('index', {
         title: 'Express'
     });

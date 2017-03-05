@@ -4,8 +4,8 @@ import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
-import * as routes from './routes';
 
+import { routes } from './routes';
 
 const app = e();
 
