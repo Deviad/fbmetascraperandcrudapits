@@ -15,8 +15,6 @@ class ApiRoutes {
 
       const apiControllers = new ApiController(app);
 
-      const SCRAPER: IRoute = apiControllers.ApiOgScraperAction('/api/ogscraper');
-
       const Routes = [
             apiControllers.ApiOgScraperAction('/api/ogscraper').subscribe( item => item),
 
