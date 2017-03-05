@@ -5,11 +5,11 @@ import * as http from 'http';
 const errorHandler = require('errorhandler');
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
-import { DataService } from "./dataservice";
+import { FbDataService } from "./services/fb.data.service";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
 const CircularJSON = require('circular-json');
-import { ApiRoutes }  from './apiroutes';
+import { ApiController }  from './controllers/api.controller';
 
 
 
@@ -31,7 +31,7 @@ app.use(cookieParser());
 
 // app.route('/api/ogscraper').get(
 //     (req: express.Request, res: express.Response)=>{
-//         let data = new DataService();
+//         let data = new FbDataService();
 //         let url = req.param('url');
 //         data.getData(url).subscribe(
 //             item =>  res.send(item)
@@ -39,9 +39,9 @@ app.use(cookieParser());
 //     }
 // );
 
-const apiRoutes = new ApiRoutes(app);
+const apiRoutes = new ApiController(app);
 
-    apiRoutes.ApiOgScraper().subscribe(
+    apiRoutes.ApiOgScraperAction().subscribe(
         item => item
     );
 

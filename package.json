@@ -6,7 +6,7 @@
   "scripts": {
     "start": "DEBUG=modern-express:* nodemon dist/app.js",
     "build": "gulp typescript",
-    "compile": "ts-node build/app.ts"
+    "watch": "gulp watch"
   },
   "author": "Davide Pugliese",
   "license": "MIT",

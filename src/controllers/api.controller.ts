@@ -1,21 +1,21 @@
 import * as express from 'express';
 
 import { Application,Request, Response } from 'express';
-import {DataService} from "./dataservice";
+import {FbDataService} from "../services/fb.data.service";
 import {Subscriber} from "rxjs";
 import IRouterHandler = express.IRouterHandler;
 
-class ApiRoutes {
+class ApiController {
 
     constructor(private app: Application) {
     }
 
 
-    ApiOgScraper<T> (): any {
+    ApiOgScraperAction<T> (): any {
 
         return  this.app.route('/api/ogscraper').get(
             (req: Request, res: Response)=>{
-                let data = new DataService();
+                let data = new FbDataService();
                 let url = req.param('url');
               data.getData(url).subscribe(
                     item =>  res.send(item)
@@ -26,4 +26,4 @@ class ApiRoutes {
 
 }
 
-export { ApiRoutes };
+export { ApiController };
