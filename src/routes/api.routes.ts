@@ -4,6 +4,7 @@ import IRouterHandler = express.IRouterHandler;
 import {ApiController} from "../controllers/api.controller";
 import {Subscriber} from "rxjs";
 import Application = express.Application;
+import IRoute = express.IRoute;
 class ApiRoutes {
 
     constructor() {
@@ -14,16 +15,16 @@ class ApiRoutes {
 
       const apiControllers = new ApiController(app);
 
-      const Routes:  [()=>{}] = [
+      const SCRAPER: IRoute = apiControllers.ApiOgScraperAction('/api/ogscraper');
 
-          () => { return apiControllers.ApiOgScraperAction('/api/ogscraper').subscribe(
-                    item => item
-                    );
-                },
+      const Routes = [
+            apiControllers.ApiOgScraperAction('/api/ogscraper').subscribe( item => item),
 
       ];
 
-       return Routes;
+
+      return Routes;
+
 
     }
 

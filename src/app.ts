@@ -32,8 +32,10 @@ app.use(cookieParser());
 
 let apiRoutes = new ApiRoutes();
 
-apiRoutes.bootRoutes(app).subscribe(item => item);
 
+for(let routeHandler of apiRoutes.bootRoutes(app)){
+    routeHandler.subscribe(item => item);
+}
 
 // const apiRoutes = new ApiController(app);
 //
