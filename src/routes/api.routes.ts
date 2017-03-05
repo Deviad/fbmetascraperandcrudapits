@@ -12,9 +12,9 @@ class ApiRoutes {
 
     bootRoutes<T>(app: Application): any {
 
-      let apiRoutes = new ApiController(app);
+      let apiControllers = new ApiController(app);
 
-      return  apiRoutes.ApiOgScraperAction('/api/ogscraper').subscribe(
+      return  apiControllers.ApiOgScraperAction('/api/ogscraper').subscribe(
             item => item
         );
     }
