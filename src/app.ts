@@ -9,9 +9,11 @@ import { FbDataService } from "./services/fb.data.service";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
 const CircularJSON = require('circular-json');
-import { ApiController }  from './controllers/api.controller';
+import IRouterHandler = express.IRouterHandler;
 
+import {Subscriber} from "rxjs";
 
+import { ApiRoutes } from './routes/api.routes';
 
 const app: Application = express();
 
@@ -29,21 +31,16 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
-// app.route('/api/ogscraper').get(
-//     (req: express.Request, res: express.Response)=>{
-//         let data = new FbDataService();
-//         let url = req.param('url');
-//         data.getData(url).subscribe(
-//             item =>  res.send(item)
-//         );
-//     }
-// );
+let apiRoutes = new ApiRoutes();
 
-const apiRoutes = new ApiController(app);
+apiRoutes.bootRoutes(app).subscribe(item => item);
 
-    apiRoutes.ApiOgScraperAction().subscribe(
-        item => item
-    );
+
+// const apiRoutes = new ApiController(app);
+//
+//     apiRoutes.ApiOgScraperAction('/api/ogscraper').subscribe(
+//         item => item
+//     );
 
 const PORT = 5000;
 

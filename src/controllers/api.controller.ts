@@ -11,9 +11,9 @@ class ApiController {
     }
 
 
-    ApiOgScraperAction<T> (): any {
+    ApiOgScraperAction<T> (endpoint: string): any {
 
-        return  this.app.route('/api/ogscraper').get(
+        return  this.app.route(endpoint).get(
             (req: Request, res: Response)=>{
                 let data = new FbDataService();
                 let url = req.param('url');
