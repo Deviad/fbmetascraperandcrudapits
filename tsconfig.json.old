@@ -8,13 +8,19 @@
         "noEmitHelpers": true,
         "sourceMap": true,
         "noEmitOnError": true,
+        "allowSyntheticDefaultImports": true,
         "lib": [
             "es6",
             "dom"
         ]
-
     },
     "include": [
         "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "types": [
+        "rx","express", "node"
     ]
 }

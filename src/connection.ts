@@ -39,7 +39,7 @@ class Connection {
         //in vanilla js it just works
 
         let subscriber = Subscriber.create(
-            response => resp.json(response),
+            response => response,
             err => {console.log('Error: %s', err)},
             () => {console.log('Completed')}
      );
@@ -49,4 +49,4 @@ class Connection {
 }
 
 
-export default Connection;
+export  { Connection };

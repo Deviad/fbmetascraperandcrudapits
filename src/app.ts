@@ -1,19 +1,23 @@
 import * as express from 'express';
+import { Application } from 'express';
 import * as path from 'path';
+import * as http from 'http';
+const errorHandler = require('errorhandler');
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import {Connection} from "./connection";
 const root = require('app-root-path');
 const cookieParser =  require('cookie-parser');
 
-import { routes } from './routes';
+const routes  = require('./routes').routes;
 
-const app = express();
+const app: Application = express();
 
 
 // view engine setup
 // app.set('views', `${root}/server/views/`);
 // app.set('view engine', 'ejs');
-
+app.use(errorHandler({ dumpExceptions: true, showStack: true }));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -22,34 +26,19 @@ app.use(bodyParser.urlencoded({
 
 app.use(cookieParser());
 
-app.use('/', routes);
+let connection = new Connection;
 
-// catch 404 and forward to error handler
-app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-    let err: any = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+app.route('/api').get(
+    (req: express.Request, res: express.Response)=>{
 
-// error handlers
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
+        let url = req.param('url');
+        connection.getConnection(url, res );
+    }
+);
 
-app.use(function(err: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+const PORT = 5000;
+
+app.listen(PORT,  ()=>{
+    console.log(`Example app listening on port ${PORT}`);});
 
 export default app;
