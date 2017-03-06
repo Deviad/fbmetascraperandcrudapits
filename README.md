@@ -1,6 +1,6 @@
 # Neste JS
 
-## Minimalistic CMS based on Express
+## Minimalistic CMS based on Express and Typescript
 
 
 This project brings you a flexible tool, that you can model according to your liking, to speed up the development of your custom 
