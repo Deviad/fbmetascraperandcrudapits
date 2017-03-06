@@ -1,4 +1,4 @@
-# Neste JS
+# NESTE JS
 
 ## Minimalistic CMS based on Express and Typescript
 
