@@ -6,6 +6,8 @@
 This project brings you a flexible tool, that you can model according to your liking, to speed up the development of your custom 
 cms.
 
+Neste JS follows SOLID programming principles.
+
 
 ### 1. Installation
 
