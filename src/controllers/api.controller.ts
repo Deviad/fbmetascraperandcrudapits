@@ -2,8 +2,9 @@ import * as express from 'express';
 
 import { Application,Request, Response } from 'express';
 import {FbDataService} from "../services/fb.data.service";
-import {Subscriber} from "rxjs";
+import {Subscriber, Observable} from "rxjs";
 import IRouterHandler = express.IRouterHandler;
+import IRoute = express.IRoute;
 
 class ApiController {
 
@@ -11,7 +12,7 @@ class ApiController {
     }
 
 
-    ApiOgScraperAction<T> (endpoint: string): any {
+    ApiOgScraperAction (endpoint: string): IRoute {
 
         return  this.app.route(endpoint).get(
             (req: Request, res: Response)=>{
