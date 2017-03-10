@@ -6,7 +6,13 @@ module.exports = {
 
         return migration.createTable('users', {
 
-            uid: {
+            id: {
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true
+            },
+
+            username: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
@@ -25,7 +31,7 @@ module.exports = {
             }
 
         }).then(function() {
-            return migration.addIndex('users', ['uid']);
+            return migration.addIndex('users', ['id']);
 
         });
 
