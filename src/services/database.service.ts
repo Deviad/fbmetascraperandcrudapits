@@ -3,7 +3,7 @@ const Sequelize = require( 'sequelize');
 class DatabaseService {
 
     establishConnection() {
-let sequelize = new Sequelize('neste', 'root', '', {
+let sequelize = new Sequelize('neste', 'root', null, {
     host: 'localhost',
     dialect: 'mysql',
 

@@ -62,4 +62,4 @@ typings/
 .idea/
 .fusebox/
 *.js.map
-*.js
+/dist/
