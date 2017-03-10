@@ -31,7 +31,7 @@ module.exports = {
             }
 
         }).then(function() {
-            return migration.addIndex('users', ['id']);
+            return migration.addIndex('users', ['username']);
 
         });
 
