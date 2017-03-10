@@ -63,3 +63,4 @@ typings/
 .fusebox/
 *.js.map
 /dist/
+/src/config/config.json
