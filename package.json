@@ -6,7 +6,8 @@
   "scripts": {
     "start": "DEBUG=modern-express:* nodemon dist/app.js",
     "build": "gulp typescript",
-    "watch": "gulp watch"
+    "watch": "gulp watch",
+    "sequelize": "node_modules/.bin/sequelize"
   },
   "author": "Davide Pugliese",
   "license": "MIT",
@@ -33,10 +34,12 @@
     "debug": "^2.2.0",
     "express": "^4.14.0",
     "morgan": "^1.8.1",
+    "mysql": "^2.13.0",
     "open-graph-scraper": "^2.4.2",
     "path": "^0.12.7",
     "rxjs": "^5.2.0",
     "sequelize": "^3.30.2",
+    "sequelize-cli": "^2.5.1",
     "umzug": "^1.11.0"
   }
 }
