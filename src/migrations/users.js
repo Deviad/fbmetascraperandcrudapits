@@ -22,11 +22,19 @@ module.exports = {
                 allowNull: false
             },
 
-            createdAt: {
+            usernameCreatedAt: {
                 type: DataTypes.DATE
             },
 
-            updatedAt: {
+            usernameUpdatedAt: {
+                type: DataTypes.DATE
+            }
+            ,
+            passwordCreatedAt: {
+                type: DataTypes.DATE
+            },
+
+            passwordUpdatedAt: {
                 type: DataTypes.DATE
             }
 
