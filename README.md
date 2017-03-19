@@ -1,7 +1,7 @@
-# NESTE JS
+# NESTE JS 
 
-## Minimalistic CMS based on Express and Typescript
-
+## At the moment NESTE JS includes basic functionalities common to an MVC framework and CMS.
+###Let's decide together what you want it to be by joining Neste JS group at https://www.facebook.com/nestejs/
 
 This project brings you a flexible tool, that you can model according to your liking, to speed up the development of your custom 
 cms.
